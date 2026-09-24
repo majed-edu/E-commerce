@@ -1,216 +1,303 @@
-/* --- الحفاظ على الهوية اللونية الأساسية --- */
-:root {
-    --main_color: #0090f0; /* اللون الأزرق الأساسي */
-    --p_color: #7b7b7b;
-    --bg_color: #F8F9FA; /* خلفية أفتح قليلاً لمظهر أنظف */
-    --white_color: #fff;
-    --color_heading: #1A202C; /* لون نص داكن فخم */
-    --border_color: rgba(0, 0, 0, 0.05); /* حدود ناعمة جداً */
-    --shadow_sm: 0 2px 4px rgba(0,0,0,0.02);
-    --shadow_md: 0 4px 6px rgba(0,0,0,0.05);
-    --transition: all 0.3s ease-in-out;
+/* src/components/header.css
+   Shared by TopHeader.jsx and BottomHeader.jsx.
+   Relies on the CSS variables defined in src/styles/variables.css —
+   make sure that file is imported in main.jsx BEFORE this one loads. */
+
+.container {
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
 }
 
-/* --- تنسيق الـ Header الفخم (تأثير الزجاج) --- */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10000;
-    /* تأثير Glassmorphism */
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: var(--shadow_sm);
+/* ============ BOTTOM HEADER ============ */
+
+.bottom-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  /* Glassmorphism: translucent + blur, so page content shows through faintly */
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border);
 }
 
-.top_header .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0; /* تقليل البادينج لمظهر أنحف وأرقى */
-    max-width: 1200px; /* أو أي عرض مناسب لتصميمك */
-    margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
+.bottom-header__inner {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
 }
 
-/* --- تنسيق الشعار --- */
-.top_header a img {
-    width: 140px; /* تصغير قليل للشعار لمظهر متناسق */
-    height: auto;
-    display: block;
-    transition: var(--transition);
+.bottom-header__right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
 }
 
-.top_header a:hover img {
-    transform: scale(1.02); /* حركة بسيطة جداً عند التمرير */
+/* --- Category dropdown --- */
+
+.category-dropdown {
+  position: relative;
 }
 
-/* --- تنسيق صندوق البحث العصري --- */
-.top_header .serachBox_Contaienr {
-    position: relative;
+.category-dropdown__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.top_header .search_box {
-    width: 450px;
-    display: flex;
-    align-items: center;
-    background: var(--bg_color);
-    border-radius: 50px; /* زوايا دائرية بالكامل */
-    /* إزالة الحدود الجامدة واستخدام ظل داخلي ناعم */
-    border: 1px solid transparent;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
-    transition: var(--transition);
-    overflow: hidden; /* لضمان بقاء العناصر داخل الشكل الدائري */
+.category-dropdown__trigger:hover,
+.category-dropdown__trigger.is-open {
+  background: var(--color-primary-dark);
+  box-shadow: var(--shadow-sm);
 }
 
-.top_header .search_box:focus-within {
-    background: var(--white_color);
-    border-color: rgba(0, 144, 240, 0.3); /* تلميح باللون الأساسي عند التركيز */
-    box-shadow: 0 0 0 3px rgba(0, 144, 240, 0.1);
+.chevron {
+  transition: transform var(--transition-fast);
 }
 
-.top_header .search_box input {
-    height: 45px;
-    flex-grow: 1; /* يأخذ المساحة المتاحة */
-    padding: 0 25px;
-    background: transparent; /* ليعكس خلفية الـ form */
-    border: none;
-    outline: none;
-    font-size: 15px;
-    color: var(--color_heading);
+.chevron.rotate {
+  transform: rotate(180deg);
 }
 
-.top_header .search_box input::placeholder {
-    color: #A0AEC0;
+.category-dropdown__panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 220px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-2);
+  list-style: none;
+  animation: dropdown-in var(--transition-fast) both;
 }
 
-.top_header .search_box button {
-    height: 35px; /* أصغر من الصندوق ليكون عائماً */
-    width: 35px;
-    background: var(--main_color);
-    border-radius: 50%; /* زر دائري عائم */
-    margin-right: 5px; /* مسافة من الحافة اليمنى */
-    cursor: pointer;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-    box-shadow: 0 2px 5px rgba(0, 144, 240, 0.3);
+.category-dropdown__panel li a {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
 
-.top_header .search_box button:hover {
-    background: #007bd5; /* درجة أغمق قليلاً عند التمرير */
-    transform: translateY(-1px);
+.category-dropdown__panel li a:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
 }
 
-.top_header .search_box button svg {
-    fill: var(--white_color);
-    font-size: 14px; /* حجم أصغر للأيقونة */
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* --- تنسيق الأيقونات الفخمة (المفضلة والسلة) --- */
-.top_header .header_icons {
-    display: flex;
-    gap: 15px; /* تقليل المسافة لمظهر أكثر تماسكاً */
+/* --- Main nav (desktop) --- */
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  list-style: none;
 }
 
-.top_header .header_icons .icons {
-    position: relative;
-    cursor: pointer;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px; /* زوايا ناعمة للأيقونة */
-    transition: var(--transition);
-    color: #4A5568; /* لون أيقونة افتراضي فخم */
+.main-nav a {
+  position: relative;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding-block: var(--space-2);
+  transition: color var(--transition-fast);
 }
 
-.top_header .header_icons .icons:hover {
-    background: rgba(0, 144, 240, 0.08); /* خلفية باهتة جداً باللون الأساسي */
-    color: var(--main_color);
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-fast);
 }
 
-.top_header .header_icons .icons svg {
-    font-size: 24px; /* حجم متناسق */
-    transition: var(--transition);
+.main-nav a:hover {
+  color: var(--color-primary);
 }
 
-/* تنسيق عداد المنتجات الأنيق */
-.top_header .header_icons .icons span {
-    position: absolute;
-    top: 5px; /* تموضع دقيق */
-    right: 5px;
-    background: var(--main_color);
-    color: var(--white_color);
-    width: 18px; /* أصغر لمظهر أرقى */
-    height: 18px;
-    text-align: center;
-    line-height: 18px;
-    font-size: 10px; /* خط أصغر */
-    font-weight: bold;
-    border-radius: 50%;
-    border: 2px solid var(--white_color); /* حد أبيض لفصله عن الأيقونة */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.main-nav a:hover::after {
+  transform: scaleX(1);
 }
 
-/* تنسيق العداد الفارغ ليكون مخفياً أو بشكل بسيط إذا أردت (اختياري) */
-.top_header .header_icons .icons span:empty {
+/* react-router-dom's NavLink adds this class automatically on the active route */
+.main-nav a.active {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.main-nav a.active::after {
+  transform: scaleX(1);
+}
+
+/* --- Auth links --- */
+
+.auth-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.auth-link:hover {
+  color: var(--color-primary);
+}
+
+.auth-divider {
+  color: var(--color-border);
+}
+
+/* --- Hamburger (mobile only) --- */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- Mobile slide-down menu --- */
+
+.mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  background: var(--color-bg);
+  border-bottom: 1px solid transparent;
+  transition: max-height var(--transition-base), border-color var(--transition-base);
+}
+
+.mobile-menu.is-open {
+  max-height: 420px;
+  border-bottom-color: var(--color-border);
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: var(--space-4) var(--space-5) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.mobile-menu a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.mobile-menu a.active {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.mobile-menu__auth {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+
+.mobile-menu__auth a {
+  flex: 1;
+  text-align: center;
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.mobile-menu__auth a:first-child {
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.mobile-menu__auth a:last-child {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* ============ RESPONSIVE ============ */
+
+@media (max-width: 900px) {
+  .main-nav {
     display: none;
+  }
+
+  .auth-link span {
+    display: none; /* keep just the icon on tablet */
+  }
 }
 
-/* --- الحفاظ على باقي التنسيقات (btm_header, suggestions) مع تحسينات طفيفة --- */
-/* (يمكنك إضافتها هنا إذا كنت تستخدمها في أماكن أخرى) */
-
-.serachBox_Contaienr {
-    position: relative;
-}
-
-.suggestions {
-    position: absolute;
-    top: calc(100% + 10px); /* مسافة ناعمة من صندوق البحث */
-    background: var(--white_color);
-    width: 100%;
-    list-style: none;
-    border-radius: 15px;
-    border: 1px solid var(--border_color);
-    box-shadow: var(--shadow_md);
-    overflow: hidden;
-    z-index: 999;
-}
-
-.suggestions li {
-    padding: 10px 15px;
+@media (max-width: 900px) {
+  .hamburger {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 1px solid var(--border_color);
-    transition: var(--transition);
-    cursor: pointer;
+  }
 }
 
-.suggestions li:last-child {
-    border-bottom: none;
-}
-
-.suggestions li:hover {
-    background: var(--bg_color);
-}
-
-.suggestions li span {
-    font-size: 14px;
-    color: var(--color_heading);
-}
-
-.suggestions li img {
-    width: 35px;
-    height: 35px;
-    border-radius: 8px;
-    object-fit: cover;
+@media (max-width: 560px) {
+  .category-dropdown__trigger span {
+    display: none; /* icon-only trigger on very small screens */
+  }
+  .bottom-header__inner {
+    gap: var(--space-3);
+  }
+  .auth-link {
+    display: none; /* auth links move into the mobile menu instead */
+  }
 }

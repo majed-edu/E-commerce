@@ -1,0 +1,68 @@
+/* src/components/ProductSlider.css */
+
+.product-slider {
+  padding-block: var(--space-6);
+}
+
+.product-slider__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.product-slider__header h2 {
+  font-size: 1.4rem;
+  color: var(--color-text);
+}
+
+.product-slider__controls {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.product-slider__controls button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), opacity var(--transition-fast);
+}
+
+.product-slider__controls button:hover:not(:disabled) {
+  background: var(--color-primary-light);
+}
+
+.product-slider__controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.product-slider__track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: var(--space-2);
+  /* Hide scrollbar visually while keeping it scrollable */
+  scrollbar-width: none;
+}
+
+.product-slider__track::-webkit-scrollbar {
+  display: none;
+}
+
+.product-slider__item {
+  flex: 0 0 auto;
+  width: 240px;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 560px) {
+  .product-slider__item {
+    width: 190px;
+  }
+}

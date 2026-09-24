@@ -1,58 +1,57 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
-import { FaSearch } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
-import { TiShoppingCart } from "react-icons/ti";
+import { FaSearch, FaRegHeart, FaShoppingBag } from "react-icons/fa";
+import { useCart } from "../../context/CartContext";
+import { useWishlist } from "../../context/WishlistContext";
+import { useAuth } from "../../context/AuthContext";
 
 import "./header.css";
 
-function TopHeader() {
+export default function TopHeader() {
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+  const { count } = useCart();
+  const { items } = useWishlist();
+  const { user } = useAuth();
+  const submit = (event) => {
+    event.preventDefault();
+    if (query.trim()) navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+  };
   return (
-    <header>
-      <div className="top_header">
-        <div className="container">
-          <Link to="/">
-            <img src={logo} alt="Logo" className="logo" />
+    <header className="top-header">
+      <div className="container top-header__inner">
+        <Link to="/" className="brand">
+          <img src={logo} alt="Reda Online Store" />
+          <span>
+            REDA<span>.</span>
+          </span>
+        </Link>
+        <form className="search-box" onSubmit={submit}>
+          <input
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search products, categories..."
+            aria-label="Search products"
+          />
+          <button aria-label="Submit search">
+            <FaSearch />
+          </button>
+        </form>
+        <div className="header-actions">
+          <Link to="/wishlist" aria-label="Wishlist">
+            <FaRegHeart />
+            <b>{items.length}</b>
           </Link>
-
-          <div className="serachBox_Contaienr">
-            <form action="" className="search_box">
-              <input
-                type="text"
-                name="search"
-                id="search"
-                placeholder="Search products..."
-              />
-              <button type="submit">
-                <FaSearch />
-              </button>
-            </form>
-            {/* إذا أردت تفعيل قائمة الاقتراحات لاحقاً، يمكنك فك تعليق هذا الكود */}
-            {/* 
-            <ul className="suggestions">
-              <li>
-                <img src={logo} alt="" />
-                <span>Product Name</span>
-              </li>
-            </ul> 
-            */}
-          </div>
-
-          <div className="header_icons">
-            <div className="icon">
-              <FaRegHeart />
-              <span className="count">0</span>
-            </div>
-            <div className="icon">
-              <TiShoppingCart />
-              <span className="count">0</span>
-            </div>
-          </div>
+          <Link to="/cart" aria-label="Cart">
+            <FaShoppingBag />
+            <b>{count}</b>
+          </Link>
+          <Link to={user ? "/account" : "/login"} className="account-link">
+            {user ? user.name.split(" ")[0] : "Sign in"}
+          </Link>
         </div>
       </div>
     </header>
   );
 }
-
-export default TopHeader;
