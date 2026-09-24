@@ -5,32 +5,35 @@ export default function About() {
     <div className="container page-shell about-page">
       <div className="page-intro">
         <span>Our story</span>
-        <h1>We build the kind of store people remember.</h1>
+        <h1>
+          Majed is a modern online store built around quality and convenience.
+        </h1>
         <p>
-          Majed was designed for premium shopping: refined essentials, smarter
-          tech, and a boutique experience that feels intentional from the first click.
+          We curate a diverse selection of products across electronics, home,
+          fashion, beauty, and everyday essentials — all chosen to help our
+          customers shop with confidence and enjoy a smooth, premium experience.
         </p>
       </div>
       <div className="about-grid">
         <div className="about-card">
-          <h2>What we stand for</h2>
+          <h2>Curated variety</h2>
           <p>
-            We believe great online shopping feels simple: clear products,
-            honest pricing, and reliable support when you need help.
+            From practical daily essentials to standout lifestyle picks, Majed
+            brings together products that suit modern life and different tastes.
           </p>
         </div>
         <div className="about-card">
-          <h2>Why customers stay</h2>
+          <h2>Quality first</h2>
           <p>
-            From home upgrades to travel essentials, we curate products that add
-            comfort without clutter.
+            We focus on trusted products and reliable quality so every order
+            feels valuable, useful, and worth returning to.
           </p>
         </div>
         <div className="about-card">
-          <h2>Our promise</h2>
+          <h2>Simple shopping</h2>
           <p>
-            Thoughtful shipping, straightforward returns, and a user experience
-            that respects your time.
+            Clear product discovery, secure checkout, and attentive service make
+            shopping at Majed easy, enjoyable, and stress-free.
           </p>
         </div>
       </div>

@@ -6,33 +6,36 @@ import "./HeroSlider.css";
 const SLIDES = [
   {
     id: 1,
-    eyebrow: "Flash Deal",
-    title: "Premium tech with up to 60% off",
-    subtitle: "Smart devices, audio gear, and lifestyle essentials built for everyday performance.",
+    eyebrow: "Trending now",
+    title: "Style, tech, and essentials for everyday living",
+    subtitle:
+      "Curated premium finds for home, work, travel, and personal upgrades — all in one destination.",
     image:
-      "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1400&q=80",
-    cta: "Shop Now",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1400&q=80",
+    cta: "Shop now",
     ctaLink: "/shop",
   },
   {
     id: 2,
-    eyebrow: "New Collection",
-    title: "Style upgrades for your everyday routine",
-    subtitle: "Seasonal fashion, travel essentials, and elevated must-haves for every moment.",
+    eyebrow: "New arrivals",
+    title: "Luxury upgrades for your daily routine",
+    subtitle:
+      "Discover elevated essentials, smart accessories, and carefully selected pieces designed to stand out.",
     image:
-      "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1400&q=80",
-    cta: "Explore Deals",
-    ctaLink: "/category/fashion",
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1400&q=80",
+    cta: "Explore deals",
+    ctaLink: "/category/electronics",
   },
   {
     id: 3,
-    eyebrow: "Limited Time",
-    title: "Transform your space with smart home picks",
-    subtitle: "Discover home essentials, decor, and wellness upgrades designed around your lifestyle.",
+    eyebrow: "Best sellers",
+    title: "Elevated essentials for home, style, and comfort",
+    subtitle:
+      "Shop top-rated products chosen to bring quality, comfort, and modern style to every corner of life.",
     image:
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80",
-    cta: "Browse Home",
-    ctaLink: "/category/home-kitchen",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1400&q=80",
+    cta: "Browse home",
+    ctaLink: "/category/fashion",
   },
 ];
 

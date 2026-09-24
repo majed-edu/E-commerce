@@ -37,7 +37,10 @@ export default function Home() {
         <div>
           <span className="eyebrow">The Majed edit</span>
           <h2>Premium finds, delivered beautifully.</h2>
-          <p>Private drops, elevated essentials, and insider deals designed around your lifestyle.</p>
+          <p>
+            Private drops, elevated essentials, and insider deals designed
+            around your lifestyle.
+          </p>
         </div>
         <form onSubmit={(event) => event.preventDefault()}>
           <label htmlFor="newsletter-email">Email address</label>

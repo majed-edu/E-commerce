@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../img/logo.png";
 import { FaSearch, FaRegHeart, FaShoppingBag, FaUserAlt } from "react-icons/fa";
 import { useCart } from "../../context/CartContext";
 import { useWishlist } from "../../context/WishlistContext";
@@ -36,9 +35,7 @@ export default function TopHeader() {
     <header className="top-header">
       <div className="container top-header__inner">
         <Link to="/" className="brand" aria-label="Majed home">
-          <span className="brand-mark">M</span>
-          <img src={logo} alt="Majed store" className="brand-logo" />
-          <span className="brand-name">MAJED</span>
+          <span className="brand-name">MAJED STORE</span>
         </Link>
 
         <form className="search-box" onSubmit={submit}>

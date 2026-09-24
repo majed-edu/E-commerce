@@ -32,11 +32,11 @@ export default function Register() {
   return (
     <div className="auth-landing">
       <div className="auth-landing__panel auth-landing__panel--brand">
-        <div className="auth-brand-mark">M</div>
         <span className="eyebrow">Create your account</span>
         <h1>Own the experience. Shop like a premium customer.</h1>
         <p>
-          Save favorites, track orders, and unlock a more refined way to shop from your very first visit.
+          Save favorites, track orders, and unlock a more refined way to shop
+          from your very first visit.
         </p>
         <ul>
           <li>Fast checkout and saved cart</li>

@@ -1,4 +1,4 @@
-/* أضِف هذا في أعلى src/index.css (قبل أي شيء آخر) */
+/* Global reset */
 
 * {
   box-sizing: border-box;

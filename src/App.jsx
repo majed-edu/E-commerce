@@ -66,9 +66,7 @@ export default function App() {
 
           <Route
             path="*"
-            element={
-              user ? <NotFound /> : <Navigate to="/login" replace />
-            }
+            element={user ? <NotFound /> : <Navigate to="/login" replace />}
           />
         </Routes>
       </main>

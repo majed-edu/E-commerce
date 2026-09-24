@@ -37,11 +37,11 @@ export default function Login() {
   return (
     <div className="auth-landing">
       <div className="auth-landing__panel auth-landing__panel--brand">
-        <div className="auth-brand-mark">M</div>
         <span className="eyebrow">Welcome back</span>
         <h1>Premium shopping, without the noise.</h1>
         <p>
-          Access curated deals, personal favorites, and a refined storefront built for luxury-minded buyers.
+          Access curated deals, personal favorites, and a refined storefront
+          built for luxury-minded buyers.
         </p>
         <ul>
           <li>Private member pricing and faster checkout</li>
@@ -92,7 +92,7 @@ export default function Login() {
         </form>
 
         <p className="auth-switch">
-          New to MAJED? <Link to="/register">Create account</Link>
+          New to MAJED STORE? <Link to="/register">Create account</Link>
         </p>
       </div>
     </div>

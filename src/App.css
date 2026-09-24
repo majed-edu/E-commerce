@@ -716,21 +716,6 @@ button {
   filter: blur(10px);
 }
 
-.auth-brand-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 92px;
-  height: 92px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  margin-bottom: 16px;
-}
-
 .auth-landing__panel h1 {
   font-size: clamp(2.2rem, 4vw, 3.6rem);
   line-height: 1.08;
@@ -768,6 +753,25 @@ button {
   padding: 32px;
   box-shadow: var(--shadow-md);
   justify-self: center;
+}
+
+.auth-card input {
+  width: 100%;
+  min-height: 52px;
+  border: 1px solid #dfe7f1;
+  border-radius: 14px;
+  padding: 0 16px;
+  background: #f8fafc;
+  color: var(--color-text);
+  font-size: 0.96rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: rgba(0, 144, 240, 0.5);
+  box-shadow: 0 0 0 4px rgba(0, 144, 240, 0.12);
+  background: #fff;
 }
 
 .auth-card__eyebrow {
@@ -810,9 +814,20 @@ button {
 
 .password-field button {
   border: 1px solid var(--color-border);
-  background: #fff;
-  padding: 12px 10px;
-  border-radius: 10px;
+  background: #eef6ff;
+  color: var(--color-primary-dark);
+  padding: 12px 14px;
+  border-radius: 12px;
+  min-width: 72px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.auth-card .btn--primary {
+  min-height: 54px;
+  font-weight: 700;
+  border-radius: 14px;
+  box-shadow: 0 16px 32px rgba(0, 144, 240, 0.18);
 }
 
 .form-error,
