@@ -37,24 +37,23 @@ export default function Login() {
   return (
     <div className="auth-landing">
       <div className="auth-landing__panel auth-landing__panel--brand">
-        <div className="auth-brand-mark">REDA</div>
+        <div className="auth-brand-mark">M</div>
         <span className="eyebrow">Welcome back</span>
-        <h1>Shop smarter. Save more.</h1>
+        <h1>Premium shopping, without the noise.</h1>
         <p>
-          Access premium deals, exclusive discounts, and a seamless shopping
-          experience that feels like a modern marketplace.
+          Access curated deals, personal favorites, and a refined storefront built for luxury-minded buyers.
         </p>
         <ul>
-          <li>Free shipping on selected orders</li>
-          <li>Smart cart and wishlist personalization</li>
-          <li>Secure local session save for your next visit</li>
+          <li>Private member pricing and faster checkout</li>
+          <li>Saved cart and wishlist personalization</li>
+          <li>Secure local session remember for your next visit</li>
         </ul>
       </div>
 
       <div className="auth-card">
         <span className="eyebrow auth-card__eyebrow">Login</span>
         <h2>Access your account</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="auth-form-modern">
           <label>
             Email
             <input
@@ -93,7 +92,7 @@ export default function Login() {
         </form>
 
         <p className="auth-switch">
-          New to REDA? <Link to="/register">Create account</Link>
+          New to MAJED? <Link to="/register">Create account</Link>
         </p>
       </div>
     </div>

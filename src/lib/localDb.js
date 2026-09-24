@@ -38,7 +38,7 @@ export const localDb = {
 
 export function obfuscatePassword(password) {
   // Demo-only obfuscation. This is NOT secure and must never store real passwords in production.
-  return btoa(unescape(encodeURIComponent(`reda-demo:${password}`)));
+  return btoa(unescape(encodeURIComponent(`majed-demo:${password}`)));
 }
 
 export function createId(prefix = "id") {

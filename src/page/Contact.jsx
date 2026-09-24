@@ -39,7 +39,7 @@ export default function Contact() {
         </form>
         <div className="contact-card">
           <h2>Store info</h2>
-          <p>Email: hello@reda-store.com</p>
+          <p>Email: hello@majed-store.com</p>
           <p>Phone: +966 55 123 4567</p>
           <p>Hours: Mon–Sat, 9am–8pm</p>
         </div>

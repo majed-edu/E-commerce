@@ -5,10 +5,10 @@ export default function About() {
     <div className="container page-shell about-page">
       <div className="page-intro">
         <span>Our story</span>
-        <h1>We make everyday shopping feel considered.</h1>
+        <h1>We build the kind of store people remember.</h1>
         <p>
-          Reda was built to combine useful essentials, well-designed tech, and a
-          calmer retail experience.
+          Majed was designed for premium shopping: refined essentials, smarter
+          tech, and a boutique experience that feels intentional from the first click.
         </p>
       </div>
       <div className="about-grid">

@@ -3,10 +3,11 @@
 .hero-slider {
   position: relative;
   overflow: hidden;
-  border-radius: var(--radius-lg);
-  margin: var(--space-5) auto;
-  max-width: var(--container-width);
+  border-radius: 28px;
+  margin: 18px auto 30px;
+  max-width: calc(var(--container-width) - 40px);
   aspect-ratio: 16 / 6;
+  box-shadow: var(--shadow-md);
 }
 
 .hero-slider__track {

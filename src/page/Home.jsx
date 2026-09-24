@@ -13,8 +13,8 @@ export default function Home() {
       <HeroSlider />
       <section className="container home-categories">
         <div>
-          <span className="eyebrow">Curated for you</span>
-          <h2>Shop by mood</h2>
+          <span className="eyebrow">Luxury essentials</span>
+          <h2>Curated for a premium lifestyle</h2>
         </div>
         <div className="category-links">
           <Link to="/category/beauty">Beauty</Link>
@@ -35,9 +35,9 @@ export default function Home() {
       />
       <section className="newsletter container">
         <div>
-          <span className="eyebrow">The Reda edit</span>
-          <h2>Good things, delivered.</h2>
-          <p>New drops, considered picks, and useful offers in your inbox.</p>
+          <span className="eyebrow">The Majed edit</span>
+          <h2>Premium finds, delivered beautifully.</h2>
+          <p>Private drops, elevated essentials, and insider deals designed around your lifestyle.</p>
         </div>
         <form onSubmit={(event) => event.preventDefault()}>
           <label htmlFor="newsletter-email">Email address</label>

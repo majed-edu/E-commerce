@@ -32,11 +32,11 @@ export default function Register() {
   return (
     <div className="auth-landing">
       <div className="auth-landing__panel auth-landing__panel--brand">
-        <div className="auth-brand-mark">REDA</div>
+        <div className="auth-brand-mark">M</div>
         <span className="eyebrow">Create your account</span>
-        <h1>Enjoy a premium shopping experience.</h1>
+        <h1>Own the experience. Shop like a premium customer.</h1>
         <p>
-          Save your favorites, track orders, and unlock exclusive offers from day one.
+          Save favorites, track orders, and unlock a more refined way to shop from your very first visit.
         </p>
         <ul>
           <li>Fast checkout and saved cart</li>
@@ -48,7 +48,7 @@ export default function Register() {
       <div className="auth-card">
         <span className="eyebrow auth-card__eyebrow">Register</span>
         <h2>Create account</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="auth-form-modern">
           <label>
             Full name
             <input

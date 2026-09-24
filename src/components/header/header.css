@@ -30,26 +30,36 @@
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 10px;
   text-decoration: none;
   color: #fff;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
 }
 
-.brand img {
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 162, 76, 0.7);
+  background: linear-gradient(135deg, rgba(212, 162, 76, 0.24), rgba(212, 162, 76, 0.06));
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  box-shadow: inset 0 0 18px rgba(212, 162, 76, 0.18);
+}
+
+.brand-logo {
   width: 42px;
   height: 42px;
   object-fit: contain;
   border-radius: 12px;
+  filter: drop-shadow(0 12px 24px rgba(212, 162, 76, 0.15));
 }
 
-.brand span {
-  font-size: 1.35rem;
-}
-
-.brand span span {
-  color: var(--color-accent);
+.brand-name {
+  font-size: 1.1rem;
 }
 
 .search-box {

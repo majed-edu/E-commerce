@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import { FaSearch, FaRegHeart, FaShoppingBag, FaUserAlt } from "react-icons/fa";
@@ -15,22 +15,30 @@ export default function TopHeader() {
   const { items } = useWishlist();
   const { user } = useAuth();
 
+  useEffect(() => {
+    if (!query.trim()) return undefined;
+
+    const timer = setTimeout(() => {
+      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+    }, 220);
+
+    return () => clearTimeout(timer);
+  }, [query, navigate]);
+
   const submit = (event) => {
     event.preventDefault();
     if (query.trim()) {
       navigate(`/search?q=${encodeURIComponent(query.trim())}`);
-      setQuery("");
     }
   };
 
   return (
     <header className="top-header">
       <div className="container top-header__inner">
-        <Link to="/" className="brand" aria-label="Reda Home">
-          <img src={logo} alt="Reda Online Store" />
-          <span>
-            REDA<span>.</span>
-          </span>
+        <Link to="/" className="brand" aria-label="Majed home">
+          <span className="brand-mark">M</span>
+          <img src={logo} alt="Majed store" className="brand-logo" />
+          <span className="brand-name">MAJED</span>
         </Link>
 
         <form className="search-box" onSubmit={submit}>
