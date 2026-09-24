@@ -19,7 +19,9 @@ export default function Login() {
     event.preventDefault();
     try {
       const user = login(email, password);
-      const guestCart = JSON.parse(localStorage.getItem("store_guest_cart") || "[]");
+      const guestCart = JSON.parse(
+        localStorage.getItem("store_guest_cart") || "[]",
+      );
       if (guestCart.length && !localDb.getCart(user.id).length) {
         localDb.saveCart(user.id, guestCart);
       }
@@ -33,26 +35,65 @@ export default function Login() {
   };
 
   return (
-    <div className="container page-shell auth-page">
+    <div className="auth-landing">
+      <div className="auth-landing__panel auth-landing__panel--brand">
+        <div className="auth-brand-mark">REDA</div>
+        <span className="eyebrow">Welcome back</span>
+        <h1>Shop smarter. Save more.</h1>
+        <p>
+          Access premium deals, exclusive discounts, and a seamless shopping
+          experience that feels like a modern marketplace.
+        </p>
+        <ul>
+          <li>Free shipping on selected orders</li>
+          <li>Smart cart and wishlist personalization</li>
+          <li>Secure local session save for your next visit</li>
+        </ul>
+      </div>
+
       <div className="auth-card">
-        <h1>Welcome back</h1>
+        <span className="eyebrow auth-card__eyebrow">Login</span>
+        <h2>Access your account</h2>
         <form onSubmit={handleSubmit}>
           <label>
             Email
-            <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+            <input
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="name@example.com"
+              required
+            />
           </label>
+
           <label>
             Password
             <div className="password-field">
-              <input type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} required />
-              <button type="button" onClick={() => setShowPassword((value) => !value)}>{showPassword ? "Hide" : "Show"}</button>
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="Enter your password"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((value) => !value)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
             </div>
           </label>
+
           {error && <p className="form-error">{error}</p>}
-          <button className="btn btn--primary btn--block" type="submit">Login</button>
+
+          <button className="btn btn--primary btn--block" type="submit">
+            Login to your account
+          </button>
         </form>
+
         <p className="auth-switch">
-          No account? <Link to="/register">Create one</Link>
+          New to REDA? <Link to="/register">Create account</Link>
         </p>
       </div>
     </div>

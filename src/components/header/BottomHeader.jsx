@@ -3,8 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./header.css";
 
-// Categories shown inside the "Browse Category" dropdown.
-// Move this to a data file (e.g. src/data/categories.js) once it grows.
 const CATEGORIES = [
   "Electronics",
   "Fashion",
@@ -16,8 +14,9 @@ const CATEGORIES = [
 
 const NAV_LINKS = [
   { label: "Home", to: "/" },
+  { label: "Shop", to: "/shop" },
+  { label: "Deals", to: "/category/electronics" },
   { label: "About", to: "/about" },
-  { label: "Accessories", to: "/accessories" },
   { label: "Blog", to: "/blog" },
   { label: "Contact", to: "/contact" },
 ];
@@ -27,9 +26,6 @@ export default function BottomHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const categoryRef = useRef(null);
 
-  // Close the category dropdown when the user clicks anywhere outside it.
-  // This is the "advanced" bit: refs + a document-level event listener,
-  // cleaned up on unmount so we don't leak listeners between renders.
   useEffect(() => {
     function handleClickOutside(event) {
       if (categoryRef.current && !categoryRef.current.contains(event.target)) {
@@ -40,7 +36,6 @@ export default function BottomHeader() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Lock body scroll while the mobile menu is open, restore it on close/unmount.
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
     return () => {
@@ -51,7 +46,6 @@ export default function BottomHeader() {
   return (
     <nav className="bottom-header">
       <div className="bottom-header__inner container">
-        {/* --- Browse Category dropdown --- */}
         <div className="category-dropdown" ref={categoryRef}>
           <button
             type="button"
@@ -81,13 +75,9 @@ export default function BottomHeader() {
           )}
         </div>
 
-        {/* --- Main navigation (desktop) --- */}
         <ul className="main-nav">
           {NAV_LINKS.map((link) => (
             <li key={link.to}>
-              {/* NavLink gives us the active route "for free": it adds the
-                  "active" class automatically when its `to` matches the
-                  current URL, so we don't track active state ourselves. */}
               <NavLink
                 to={link.to}
                 end={link.to === "/"}
@@ -99,17 +89,10 @@ export default function BottomHeader() {
           ))}
         </ul>
 
-        {/* --- Right side: auth links + hamburger --- */}
-        <div className="bottom-header__right">
-          <NavLink to="/login" className="auth-link">
+        <div className="bottom-header__right" aria-label="Store utility links">
+          <NavLink to="/account" className="auth-link">
             <UserIcon />
-            <span>Login</span>
-          </NavLink>
-          <span className="auth-divider" aria-hidden="true">
-            /
-          </span>
-          <NavLink to="/register" className="auth-link">
-            <span>Register</span>
+            <span>My account</span>
           </NavLink>
 
           <button
@@ -126,7 +109,6 @@ export default function BottomHeader() {
         </div>
       </div>
 
-      {/* --- Mobile slide-down menu --- */}
       <div className={`mobile-menu ${isMobileMenuOpen ? "is-open" : ""}`}>
         <ul>
           {NAV_LINKS.map((link) => (
@@ -143,19 +125,17 @@ export default function BottomHeader() {
           ))}
         </ul>
         <div className="mobile-menu__auth">
-          <NavLink to="/login" onClick={() => setIsMobileMenuOpen(false)}>
-            Login
+          <NavLink to="/account" onClick={() => setIsMobileMenuOpen(false)}>
+            My account
           </NavLink>
-          <NavLink to="/register" onClick={() => setIsMobileMenuOpen(false)}>
-            Register
+          <NavLink to="/cart" onClick={() => setIsMobileMenuOpen(false)}>
+            Cart
           </NavLink>
         </div>
       </div>
     </nav>
   );
 }
-
-/* --- Small inline icon components (no extra dependency needed) --- */
 
 function MenuIcon() {
   return (

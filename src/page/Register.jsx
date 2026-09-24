@@ -30,28 +30,84 @@ export default function Register() {
   };
 
   return (
-    <div className="container page-shell auth-page">
+    <div className="auth-landing">
+      <div className="auth-landing__panel auth-landing__panel--brand">
+        <div className="auth-brand-mark">REDA</div>
+        <span className="eyebrow">Create your account</span>
+        <h1>Enjoy a premium shopping experience.</h1>
+        <p>
+          Save your favorites, track orders, and unlock exclusive offers from day one.
+        </p>
+        <ul>
+          <li>Fast checkout and saved cart</li>
+          <li>Personalized recommendations</li>
+          <li>One-click access on your next visit</li>
+        </ul>
+      </div>
+
       <div className="auth-card">
-        <h1>Create account</h1>
+        <span className="eyebrow auth-card__eyebrow">Register</span>
+        <h2>Create account</h2>
         <form onSubmit={handleSubmit}>
           <label>
             Full name
-            <input value={form.name} onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))} required />
+            <input
+              value={form.name}
+              onChange={(event) =>
+                setForm((current) => ({ ...current, name: event.target.value }))
+              }
+              placeholder="Your full name"
+              required
+            />
           </label>
+
           <label>
             Email
-            <input type="email" value={form.email} onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))} required />
+            <input
+              type="email"
+              value={form.email}
+              onChange={(event) =>
+                setForm((current) => ({
+                  ...current,
+                  email: event.target.value,
+                }))
+              }
+              placeholder="name@example.com"
+              required
+            />
           </label>
+
           <label>
             Password
             <div className="password-field">
-              <input type={showPassword ? "text" : "password"} value={form.password} onChange={(event) => setForm((current) => ({ ...current, password: event.target.value }))} required />
-              <button type="button" onClick={() => setShowPassword((value) => !value)}>{showPassword ? "Hide" : "Show"}</button>
+              <input
+                type={showPassword ? "text" : "password"}
+                value={form.password}
+                onChange={(event) =>
+                  setForm((current) => ({
+                    ...current,
+                    password: event.target.value,
+                  }))
+                }
+                placeholder="Minimum 6 characters"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((value) => !value)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
             </div>
           </label>
+
           {error && <p className="form-error">{error}</p>}
-          <button className="btn btn--primary btn--block" type="submit">Register</button>
+
+          <button className="btn btn--primary btn--block" type="submit">
+            Create account
+          </button>
         </form>
+
         <p className="auth-switch">
           Already have an account? <Link to="/login">Login</Link>
         </p>

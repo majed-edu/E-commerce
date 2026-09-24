@@ -1,7 +1,7 @@
 /* src/components/header.css
    Shared by TopHeader.jsx and BottomHeader.jsx.
-   Relies on the CSS variables defined in src/styles/variables.css —
-   make sure that file is imported in main.jsx BEFORE this one loads. */
+   Relies on the CSS variables defined in src/styles/variables.css.
+*/
 
 .container {
   max-width: var(--container-width);
@@ -9,14 +9,152 @@
   padding-inline: var(--space-5);
 }
 
-/* ============ BOTTOM HEADER ============ */
+.top-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: linear-gradient(180deg, rgba(13, 38, 59, 0.96), rgba(13, 38, 59, 0.9));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.top-header__inner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-5);
+  min-height: 82px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.brand img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.brand span {
+  font-size: 1.35rem;
+}
+
+.brand span span {
+  color: var(--color-accent);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-pill);
+  padding: 8px 12px 8px 18px;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.search-box:focus-within {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.search-box input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 0.94rem;
+  outline: none;
+}
+
+.search-box input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search-box button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-action,
+.account-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.header-action {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-action b {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  background: var(--color-accent);
+  color: #111827;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.account-link {
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 144, 240, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.header-action:hover,
+.account-link:hover {
+  transform: translateY(-1px);
+}
 
 .bottom-header {
   position: sticky;
-  top: 0;
+  top: 82px;
   z-index: 40;
-  /* Glassmorphism: translucent + blur, so page content shows through faintly */
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--color-border);
@@ -36,8 +174,6 @@
   gap: var(--space-3);
 }
 
-/* --- Category dropdown --- */
-
 .category-dropdown {
   position: relative;
 }
@@ -51,8 +187,8 @@
   color: #fff;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.92rem;
+  font-weight: 700;
   cursor: pointer;
   transition: background var(--transition-fast), box-shadow var(--transition-fast);
 }
@@ -111,8 +247,6 @@
   }
 }
 
-/* --- Main nav (desktop) --- */
-
 .main-nav {
   display: flex;
   align-items: center;
@@ -125,7 +259,7 @@
   color: var(--color-text);
   text-decoration: none;
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 600;
   padding-block: var(--space-2);
   transition: color var(--transition-fast);
 }
@@ -143,25 +277,15 @@
   transition: transform var(--transition-fast);
 }
 
-.main-nav a:hover {
-  color: var(--color-primary);
-}
-
-.main-nav a:hover::after {
-  transform: scaleX(1);
-}
-
-/* react-router-dom's NavLink adds this class automatically on the active route */
+.main-nav a:hover,
 .main-nav a.active {
   color: var(--color-primary);
-  font-weight: 700;
 }
 
+.main-nav a:hover::after,
 .main-nav a.active::after {
   transform: scaleX(1);
 }
-
-/* --- Auth links --- */
 
 .auth-link {
   display: flex;
@@ -170,19 +294,13 @@
   color: var(--color-text);
   text-decoration: none;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 700;
   transition: color var(--transition-fast);
 }
 
 .auth-link:hover {
   color: var(--color-primary);
 }
-
-.auth-divider {
-  color: var(--color-border);
-}
-
-/* --- Hamburger (mobile only) --- */
 
 .hamburger {
   display: none;
@@ -212,8 +330,6 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* --- Mobile slide-down menu --- */
-
 .mobile-menu {
   max-height: 0;
   overflow: hidden;
@@ -238,12 +354,11 @@
 .mobile-menu a {
   color: var(--color-text);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .mobile-menu a.active {
   color: var(--color-primary);
-  font-weight: 700;
 }
 
 .mobile-menu__auth {
@@ -272,32 +387,58 @@
   color: #fff;
 }
 
-/* ============ RESPONSIVE ============ */
-
 @media (max-width: 900px) {
+  .top-header__inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding-block: 14px;
+  }
+
+  .search-box {
+    width: min(100%, 620px);
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
   .main-nav {
     display: none;
   }
 
-  .auth-link span {
-    display: none; /* keep just the icon on tablet */
+  .bottom-header__right .auth-link {
+    display: none;
   }
-}
 
-@media (max-width: 900px) {
   .hamburger {
     display: flex;
   }
 }
 
 @media (max-width: 560px) {
-  .category-dropdown__trigger span {
-    display: none; /* icon-only trigger on very small screens */
-  }
+  .top-header__inner,
   .bottom-header__inner {
     gap: var(--space-3);
   }
-  .auth-link {
-    display: none; /* auth links move into the mobile menu instead */
+
+  .brand span {
+    font-size: 1rem;
+  }
+
+  .search-box {
+    padding-left: 14px;
+  }
+
+  .search-box input {
+    font-size: 0.85rem;
+  }
+
+  .account-link span {
+    display: none;
+  }
+
+  .category-dropdown__trigger span {
+    display: none;
   }
 }

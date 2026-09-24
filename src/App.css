@@ -4,6 +4,11 @@ main {
   background: var(--color-bg-soft);
 }
 
+main.auth-shell {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #edf8ff 0%, #f8fafc 100%);
+}
+
 section {
   scroll-margin-top: 88px;
 }
@@ -660,12 +665,107 @@ button {
   place-items: center;
 }
 
+.auth-landing {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 28px;
+  padding: 32px 0;
+}
+
+.auth-landing__panel {
+  background: linear-gradient(160deg, #0d263b 0%, #0f172a 100%);
+  color: #fff;
+  border-radius: 30px;
+  padding: 40px;
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 26px 65px rgba(15, 23, 42, 0.18);
+}
+
+.auth-landing__panel--brand {
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-landing__panel--brand::before {
+  content: "";
+  position: absolute;
+  inset: auto -80px -120px auto;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: rgba(0, 144, 240, 0.38);
+  filter: blur(10px);
+}
+
+.auth-brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+
+.auth-landing__panel h1 {
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  line-height: 1.08;
+  margin-bottom: 12px;
+}
+
+.auth-landing__panel p {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.04rem;
+  max-width: 500px;
+}
+
+.auth-landing__panel ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.auth-landing__panel li::before {
+  content: "✓";
+  color: var(--color-accent);
+  margin-right: 10px;
+  font-weight: 800;
+}
+
 .auth-card {
   width: min(100%, 520px);
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 28px;
   border: 1px solid var(--color-border);
   padding: 32px;
+  box-shadow: var(--shadow-md);
+  justify-self: center;
+}
+
+.auth-card__eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.auth-card h2 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  margin-bottom: 20px;
 }
 
 .auth-card form,

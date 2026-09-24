@@ -11,12 +11,31 @@ export default function Contact() {
         <p>We usually reply within one business day.</p>
       </div>
       <div className="contact-layout">
-        <form className="contact-form" onSubmit={(event) => { event.preventDefault(); setSubmitted(true); }}>
-          <label>Name<input type="text" placeholder="Your name" required /></label>
-          <label>Email<input type="email" placeholder="you@example.com" required /></label>
-          <label>Message<textarea placeholder="Tell us how we can help" rows="6" required /></label>
-          <button className="btn btn--primary" type="submit">Send message</button>
-          {submitted && <p className="form-success">Your message was sent successfully.</p>}
+        <form
+          className="contact-form"
+          onSubmit={(event) => {
+            event.preventDefault();
+            setSubmitted(true);
+          }}
+        >
+          <label>
+            Name
+            <input type="text" placeholder="Your name" required />
+          </label>
+          <label>
+            Email
+            <input type="email" placeholder="you@example.com" required />
+          </label>
+          <label>
+            Message
+            <textarea placeholder="Tell us how we can help" rows="6" required />
+          </label>
+          <button className="btn btn--primary" type="submit">
+            Send message
+          </button>
+          {submitted && (
+            <p className="form-success">Your message was sent successfully.</p>
+          )}
         </form>
         <div className="contact-card">
           <h2>Store info</h2>
